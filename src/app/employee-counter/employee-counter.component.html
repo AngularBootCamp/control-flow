@@ -1,0 +1,39 @@
+<article>
+  <button (click)="increment()">Add One</button>
+  <button (click)="reset()">Reset</button>
+  {{ n }}
+</article>
+
+<article>
+  <header>Coarse description</header>
+  <div>
+    @switch (n > 5) {
+      @case (false) {
+        <span>A few employees</span>
+      }
+      @case (true) {
+        <span>Many employees</span>
+      }
+    }
+  </div>
+</article>
+
+<article>
+  <header>Fine description</header>
+  <div>
+    @switch (n) {
+      @case (0) {
+        <div>Zero employees</div>
+      }
+      @case (1) {
+        <div>One employee</div>
+      }
+      @case (results()) {
+        <div>2...4 employees</div>
+      }
+      @default {
+        <div>{{ n }} Employees</div>
+      }
+    }
+  </div>
+</article>

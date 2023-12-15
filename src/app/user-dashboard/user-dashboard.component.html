@@ -1,0 +1,75 @@
+<article>
+  <header>Profile</header>
+
+  @if (profilePartShown === ProfilePart.phone) {
+    <p>Phone number: 555-123-1345</p>
+  } @else if (profilePartShown === ProfilePart.email) {
+    <!-- Note that '@' is a special character now,
+       so we need to escape it -->
+    <p>Email address: test&commat;abccompany.com</p>
+  } @else {
+    <p>Address: 1 Main Street, St. Louis, MO 63105</p>
+  }
+
+  <footer>
+    @for (part of profileParts; track part) {
+      <button
+        (click)="profilePartShown = part"
+        [disabled]="profilePartShown === part"
+      >
+        Show {{ part }}
+      </button>
+      <br />
+    }
+  </footer>
+</article>
+
+<article>
+  <header>Todo List</header>
+
+  <ul class="collection todo-list">
+    @for (todo of todos; track todo) {
+      <li>
+        {{ todo }}
+      </li>
+    } @empty {
+      <li>Congratulations on having no todos!</li>
+    }
+  </ul>
+
+  <footer>
+    <button (click)="addTodo()">Add Todo</button>
+    <button (click)="clearTodos()">Clear Todos</button>
+  </footer>
+</article>
+
+<article>
+  <header>Upcoming Meetings</header>
+
+  <ul class="collection">
+    @for (
+      meeting of nextMeetings;
+      track meeting.description;
+      let i = $index
+    ) {
+      <li>{{ i + 1 }}: {{ meeting.description }}</li>
+    }
+  </ul>
+</article>
+
+<article>
+  <header>Who is in meetings</header>
+
+  <ul>
+    @for (meeting of nextMeetings; track meeting.description) {
+      <li>
+        {{ meeting.description }}:
+        @for (person of meeting.participants; track person) {
+          <span>
+            {{ person }}
+          </span>
+        }
+      </li>
+    }
+  </ul>
+</article>
